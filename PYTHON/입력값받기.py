@@ -22,3 +22,6 @@ A = list(map(int, input().split()))
 # 특정 횟수만큼 입력값 받기
 for i in range(T):
     A = input()
+
+# 이차원 배열로 입력값 받기
+number_list = [list(map(int, input().split())) for _ in range(N)]
