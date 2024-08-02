@@ -13,6 +13,9 @@ C = input()
 #정수형으로 입력값
 A = int(input())
 
+#리스트로 입력값
+A = list(input()) #abc => ['a', 'b', 'c']
+
 # 정수형으로 입력값 여러개
 A, B, C = map(int, input().split())
 
