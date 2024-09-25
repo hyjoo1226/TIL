@@ -45,3 +45,8 @@ HTTP responsestatus code
         - POST는 단순 조회를 위한 GET과 달리 특성 리소스에 변경(생성, 수정, 삭제)를 요구하는 의미와 기술적인 부분을 가지고 있기 때문
         - DB에 조작을가하는 요청은 반드시 인증 수단이 필요
         - 데이터베이스에 대한 변경사항을 만드는 요청이기 때문에 토큰을 사용해 최소한의 신원 확인을 하는 것
+- new & create view
+  - 공통점: 데이터 생성을 구현하기 위함
+  - new는 GET method 요청만을, create는 POST method 요청만을 처리
+  - 2개의 view 함수를 하나로 구조화
+- edit과 update view 함수 결합
