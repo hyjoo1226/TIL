@@ -1,0 +1,24 @@
+Routing: 네트워크에서 경로를 선택하는 프로세스, 웹 애플리케이션에서 다른 페이지 간의 전환과 경로를 관리하는 기술
+  - SSR에서 routing은 서버측에서 수행 - 서버가 사용자가 방문한 URL 경로를 기반으로 응답을 전송. 링크를 클릭하면 브라우저는 서버로부터 HTML 응답을 수신하고 새 HTML로 전체 페이지를 다시 로드
+  - CSR에서 routing은 클라이언트 측에서 수행 - 클라이언트 측 JavaScript가 새 데이터를 동적으로 가져와 전체 페이지를 다시 로드하지 않음
+    - SPA에서 routing이 없다면 유저가 URL을 통한 페이지의 변화를 감지할 수 없음
+    - URL이 1개여서 새로고침 시 처음 페이지로 되돌아감, 링크를 공유할 시 첫 페이지만 공유 가능, 브라우저의 뒤로가기 기능 사용X  
+    => 페이지는 1개이지만 주소에 따라 여러 컴포넌트를 새로 렌더링하여 여러 페이지를 사용하는 것처럼 보이도록 해야 함
+  - Vue Router
+    - RouterLink: 페이지를 다시 로드하지 않고 URL을 변경하여 URL 생성 및 관련 로직을 처리. HTML의 a태그를 렌더링
+    - RouterView: URL에 해당하는 컴포넌트를 표시
+    - router 메서드
+      - router.push() - 뒤로가기O
+        - 선언전 표현(<RouterLink : to="">) / 프로그래밍적 표현(router.push())
+      - router.replace() - 뒤로가기X
+    - Navigation Guard: Vue router를 통해 특정 URL에 접근할 때 다른 URL로 redirect를 하거나 취소하여 내비게이션을 보호 - 라우트 전환 전/후 자동으로 실행되는 Hook
+      - Globally(전역 가드) - index.js에 작성
+        - beforeEach(): 다른 URL로 이동하기 직전에 실행되는 함수
+        - beforeResolve()
+        - afterEach()
+      - Per-route(라우터 가드) - index.js의 각 routes에 작성
+        - beforeEnter(): 특정 route에 진입했을 때만 실행되는 함수
+      - In-component(컴포넌트 가드) - 각 컴포넌트이 script 내부에 작성
+        - onBeforeRouteLeave(): 현재 라우트에서 다른 라우트로 이동하기 전에 실행 - 사용자가 현재 페이지를 떠나는 동작에 대한 로직을 처리
+        - onBeforeRouteUpdate(): 이미 렌더링 된 컴포넌트가 다른 라우트 내에서 업데이트 되기 전에 실행 - 라우트 업데이트 시 추가적인 로직을 처리
+    - Lazy Loading Routes: Vue 앱 첫 빌드 시 해당 컴포넌트를 로드하지 않고, 해당 경로를 처음으로 방문할 때 컴포넌트를 로드 -> 앱을 빌드할 때 처음부터 모든 컴포넌트를 준비하면 페이지 로드 시간이 길어질 수 있기 때문
